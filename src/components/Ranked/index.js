@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import MovieRow from '../movieRow/index';
+import MovieRow from '../MovieRow/index';
 
 const url = 'https://api.themoviedb.org/3/movie/top_rated?&api_key=756e1622851086c3d011b8461693b962&page=1';
 
@@ -28,14 +28,16 @@ const url = 'https://api.themoviedb.org/3/movie/top_rated?&api_key=756e162285108
    render() {
     const { movies, loading, error } = this.state;
      return (
-       <div className="col-12">
-         <h1>Películas mejor rankeadas</h1>
-        {!loading && movies.map(movie =>
-          <MovieRow movie ={movie} />
-        )}
-        {loading && <p>Cargando información...</p> }
-        {!loading && !error && !movies.length && <h2>No hay información disponible</h2>}
-        {!loading && error && <h2>Ocurrió un error</h2>}
+       <div className="col-12" id="ranked">
+          <h1>Películas mejor rankeadas</h1>
+          <div className="row">
+              {!loading && movies.map(movie =>
+               <MovieRow movie ={movie} />
+              )}
+              {loading && <p>Cargando información...</p> }
+              {!loading && !error && !movies.length && <h2>No hay información disponible</h2>}
+              {!loading && error && <h2>Ocurrió un error</h2>}
+          </div>
        </div>
      );
    }

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './styles.css';
-import Navbar from '../../components/navbar/index';
-
-import Ranked from '../../components/ranked/index';
-import Premiere from '../../components/premiere/index';
-// import Search from '../../components/search';
-// import Favs from '../../components/favs/index';
+import Navbar from '../../components/Navbar/index';
+import Premiere from '../../components/Premiere/index';
+import Ranked from '../../components/Ranked/index';
+// import Favs from '../../components/Favs/index';
 
 class Home extends Component {
   render() {
@@ -13,8 +11,8 @@ class Home extends Component {
       <div className="Home">
         <div className="container-flex">
            <Navbar />     
-            <Ranked />
-            <Premiere />          
+          <Premiere /> 
+          <Ranked />        
         </div>
       </div>
     );

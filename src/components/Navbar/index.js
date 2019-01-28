@@ -15,10 +15,10 @@ class Navbar extends Component {
                       <a className="nav-link" href="#top"><i className="fas fa-home"></i> Inicio</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#new"><i className="fas fa-ticket-alt"></i> Estrenos</a>
+                      <a className="nav-link" href="#premiere"><i className="fas fa-ticket-alt"></i> Más vistas</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#best"><i className="fas fa-medal"></i> Mejor rankeadas</a>
+                      <a className="nav-link" href="#ranked"><i className="fas fa-medal"></i> Mejor rankeadas</a>
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#favs"><i className="fas fa-star"></i> Favoritas</a>
