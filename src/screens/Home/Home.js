@@ -4,6 +4,7 @@ import Navbar from '../../components/navbar/index';
 import Premiere from '../../components/premiere/index';
 import Ranked from '../../components/ranked/index';
 // import Favs from '../../components/favs/index';
+import Search from '../../components/search/index';
 
 const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-22&endtime=2019-01-24';
 
@@ -53,6 +54,7 @@ class Home extends Component {
             {!loading && !error && !quakes.length && <h2>No hay información disponible</h2>}
             {!loading && error && <h2>Ocurrió un error</h2>}
           </div>
+            <Search />
         </div>
           
       </div>
