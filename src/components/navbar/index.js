@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 class Navbar extends Component {
     render(){
         return(
-            <nav className="navbar navbar-expand-lg navbar-dark bg-danger">
+            <nav className="navbar navbar-expand-lg navbar-expand-xl navbar-dark bg-danger">
               <div className="container">
                 <a className="navbar-brand" href="#top">React Movies</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

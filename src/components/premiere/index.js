@@ -1,10 +1,44 @@
-import React from 'react';
+import React,{Component} from 'react';
+import MovieRow from '../movieRow/index';
 
- const Premiere = ({quake}) => (
-   <div className="quake">
-    <h2>{quake.properties.place}</h2>
-    <p>Magnitud: {quake.properties.mag} - Profundida: {quake.geometry.coordinates[2]} km</p>
-  </div>
- );
+const url = "https://api.themoviedb.org/3/trending/all/day?&api_key=756e1622851086c3d011b8461693b962";
+
+class Premiere extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      movies: [],
+      error: false
+    };
+  };
+
+  async componentDidMount() {
+    try {
+      this.setState({loading: true, error: false });
+      const response = await fetch(url);
+      const responseJson = await response.json();
+      const movies = responseJson.results.slice(0,12);
+      this.setState({movies, loading: false, error: false });
+    } catch(e) {
+      this.setState({ loading: false, error: true })
+    }
+  };
+
+   render() {
+    const { movies, loading, error } = this.state;
+     return (
+       <div className="col-12">
+         <h1>Películas más vistas</h1>
+        {!loading && movies.map(movie =>
+          <MovieRow movie ={movie} />
+        )}
+        {loading && <p>Cargando información...</p> }
+        {!loading && !error && !movies.length && <h2>No hay información disponible</h2>}
+        {!loading && error && <h2>Ocurrió un error</h2>}
+       </div>
+     );
+   }
+ };
 
  export default Premiere;
