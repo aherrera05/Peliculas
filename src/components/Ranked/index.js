@@ -32,7 +32,7 @@ const url = 'https://api.themoviedb.org/3/movie/top_rated?&api_key=756e162285108
           <h1>Películas mejor rankeadas</h1>
           <div className="row">
               {!loading && movies.map(movie =>
-               <MovieRow movie ={movie} />
+               <MovieRow movie ={movie} key={movie.id}/>
               )}
               {loading && <p>Cargando información...</p> }
               {!loading && !error && !movies.length && <h2>No hay información disponible</h2>}

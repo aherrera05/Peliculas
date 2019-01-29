@@ -18,7 +18,7 @@ const Router = () => (
         exact
         path="/movie/:movieid"
         component={Single}
-      />
+          />
       <Route
         component={NotFound}
       />

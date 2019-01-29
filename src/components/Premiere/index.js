@@ -32,7 +32,7 @@ class Premiere extends Component {
       <h1>Películas más vistas</h1>
       <div className="row">
           {!loading && movies.map(movie =>
-           <MovieRow movie ={movie} />
+           <MovieRow movie ={movie}  key={movie.id}/>
           )}
           {loading && <p>Cargando información...</p> }
           {!loading && !error && !movies.length && <h2>No hay información disponible</h2>}
