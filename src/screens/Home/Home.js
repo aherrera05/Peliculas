@@ -3,7 +3,7 @@ import './styles.css';
 import Navbar from '../../components/Navbar/index';
 import Premiere from '../../components/Premiere/index';
 import Ranked from '../../components/Ranked/index';
-// import Favs from '../../components/Favs/index';
+import Favs from '../../components/Favs/index';
 
 class Home extends Component {
   render() {
@@ -12,7 +12,8 @@ class Home extends Component {
         <div className="container-flex">
            <Navbar />     
           <Premiere /> 
-          <Ranked />        
+          <Ranked /> 
+          <Favs />       
         </div>
       </div>
     );

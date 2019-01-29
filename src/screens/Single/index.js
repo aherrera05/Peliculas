@@ -9,10 +9,12 @@ class Single extends Component {
         this.state = {
           loading: false,
           movie: [],
+          favs:[],
           error: false
         };
       };
     
+      // calling data from API
       async componentDidMount() {
         try { 
             const movie_id = Object.values(this.props.match.params);
@@ -27,17 +29,33 @@ class Single extends Component {
             this.setState({ loading: false, error: true })
         }
       };
- 
+
+      // Saving Favs
+  saveFavs = (movie) => {
+    const { favs} = this.state;
+    const favorite= {
+      id: movie.id,
+      title: movie.title,
+    }
+    let allMovies = JSON.parse(localStorage.getItem('favs-movies')) || [];
+    let repeated = allMovies.filter(function(movie){ return movie.id === favorite.id}).length;
+    if (!repeated){
+        this.setState({favs});
+        allMovies.push(favorite);
+        localStorage.setItem("favs-movies", JSON.stringify(allMovies));
+    } else { alert('Esta película ya está en tus favoritos :)')};
+  }
+ // Render
    render() {
     const { movie, loading, error } = this.state;
         return (
             <div>
                 {!loading &&  !error && movie.id &&
-                <div className="col-xs-12 col-sm-3 col-md-1 col-lg-1 col-xl-1 float-left mx-auto my-2 p-2 text-left">
+                <div className="col-xs-12 col-sm-3 col-md-4 col-lg-4 col-xl-4 float-left mx-auto my-2 p-2 text-left">
                     <img className="img-fluid img-thumbnail rounded " alt="poster" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
                     <h5> {movie.title}</h5>
                     <p>Nota: {movie.vote_average}</p>
-                    <button>Agregar a favoritos</button>
+                    <button onClick={() => this.saveFavs(movie)}>Agregar a favoritos</button>
                     <Link to="/">Ir al Inicio</Link>
                     </div>
                }
