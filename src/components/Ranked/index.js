@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 import MovieRow from '../MovieRow/index';
-
+// API
 const url = 'https://api.themoviedb.org/3/trending/all/day?&api_key=756e1622851086c3d011b8461693b962&language=es-ES';
-
+// Ranked Component
  class Ranked extends Component {
   constructor(props) {
     super(props);
@@ -12,19 +12,19 @@ const url = 'https://api.themoviedb.org/3/trending/all/day?&api_key=756e16228510
       error: false
     };
   };
-
+// Calling movie data
   async componentDidMount() {
     try {
       this.setState({loading: true, error: false });
       const response = await fetch(url);
       const responseJson = await response.json();
-      const movies = responseJson.results.slice(0,12);
+      const movies = responseJson.results.slice(0,6);
       this.setState({movies, loading: false, error: false });
     } catch(e) {
       this.setState({ loading: false, error: true })
     }
   };
-
+  // Render
    render() {
     const { movies, loading, error } = this.state;
      return (

@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import MovieRow from '../MovieRow/index';
-
-// const url = "https://api.themoviedb.org/3/trending/all/day?&api_key=756e1622851086c3d011b8461693b962&language=es-ES";
-
+// Favs Component
 class Favs extends Component {
   constructor(props) {
     super(props);
@@ -49,5 +47,4 @@ class Favs extends Component {
      );
    }
  };
-
  export default Favs;

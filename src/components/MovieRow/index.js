@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
-
-
-// Movie card
+// Movie card component
 class MovieRow extends Component {
     render(){
         return(
@@ -16,5 +14,4 @@ class MovieRow extends Component {
         )
     };
 }
-
 export default MovieRow;

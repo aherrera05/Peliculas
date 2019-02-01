@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+// Importing Components
 import Navbar from '../../components/Navbar/index';
-
+import Footer from '../../components/Footer/index';
+//  Single Component
 class Single extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +13,6 @@ class Single extends Component {
           error: false
         };
       };
-    
       // calling data from API
       async componentDidMount() {
         try { 
@@ -27,7 +28,6 @@ class Single extends Component {
             this.setState({ loading: false, error: true })
         }
       };
-
       // Saving Favs
   saveFavs = (movie) => {
     const { favs} = this.state;
@@ -53,9 +53,9 @@ class Single extends Component {
     const { movie, loading, error } = this.state;
         return (
             <div>
+                <Navbar />
                 {!loading &&  !error && movie.id &&
                     <div>
-                        <Navbar />
                         <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 float-left p-2 my-2 text-center">
                             <img className="poster" alt="poster" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
                          </div>
@@ -65,8 +65,8 @@ class Single extends Component {
                             <p>Nota: {movie.vote_average}</p>
                             <p>Resumen: {movie.overview}</p>
                             <button onClick={() => this.saveFavs(movie)}>Agregar a favoritos</button>
-                            </div>
                         </div>
+                    </div>
                }
             {loading && 
                 <div class="col-12 text-center">
@@ -83,9 +83,9 @@ class Single extends Component {
                     <h2>Ocurrió un error.</h2>
                 </div>
             }
+            <Footer />
             </div>
         )
     };
 };
-
 export default Single;
