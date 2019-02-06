@@ -22,7 +22,6 @@ class Single extends Component {
             const response = await fetch(url);
             const responseJson = await response.json();
             const movie = responseJson;
-            console.log(movie)
             this.setState({movie, loading: false, error: false });
         } catch(e) {
             this.setState({ loading: false, error: true })
