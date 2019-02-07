@@ -18,7 +18,7 @@ class Home extends Component {
       moviesP: [],
       moviesT: [],
       moviesF: [],
-      movieG: [],
+      genres: [],
       filter:[],
       error: false,
     };
@@ -31,39 +31,38 @@ class Home extends Component {
       // fetch Premiere
       const responseP = await fetch(urlPremier);
       const responseJsonP = await responseP.json();
-      const fetchP = responseJsonP.results.slice(0,12);
-      const moviesP = fetchP.sort(function(a,b){ return a.vote_average > b.vote_average ? -1 : 1});
-      // const moviesPd = fetchP.sort(function(a,b){ return a.vote_average > b.vote_average ? 1 :  -1;});
+      const moviesP = responseJsonP.results.slice(0,12);
       // fetch Trend
       const responseT = await fetch(urlTrend);
       const responseJsonT= await responseT.json();
-      //const fetchBla = responseJsonT.results.slice(0,12);
-      const fetchT = responseJsonT.results.slice(0,12); 
-      const moviesT = fetchT.sort(function(a,b){ return a.vote_average > b.vote_average ? -1 :  1});
-      // const moviesTd = fetchT.sort(function(a,b){ return a.vote_average > b.vote_average ? 1 :  -1;});
-      //const bla = fetchBla.filter(movies => movies.genre_ids.some(genre => !bla.includes(genre)));
-      // fetch Genres
-      const responseG = await fetch(urlGenres);
-      const moviesG = await responseG.json();
-      console.log(moviesG);
+      const moviesT = responseJsonT.results.slice(0,12); 
       //States
-      this.setState({moviesP, moviesT, moviesG, loading: false, error: false });
+      this.setState({moviesP, moviesT, loading: false, error: false });
     } catch(e) {
       this.setState({ loading: false, error: true })
     }
   };
-  // Select bip function
-
+  // Fetch Genres
+  fetchGenres() {
+    fetch(urlGenres)
+      .then(response => response.json())
+      .then(json => this.setState({ genres: json.genres }));
+  };
+  componentWillMount(){
+    this.fetchGenres();
+  };
   // Render
  render() {
-  const { moviesP, moviesT, moviesG, loading, error } = this.state;
+  const { moviesP, moviesT, genres, loading, error } = this.state;
     return (
       <div className="Home">
         <div className="container-flex">
-          <Navbar movieG = {moviesG} /> )}
+          <Navbar genres={genres}  /> 
           <div className="col-12 anchor" id="premiere">
               <h1>Estrenos</h1>
               <div className="row">
+                <div className="col-12 text-left">
+                </div>
                     {!loading && moviesP.map(movie => <MovieRow movie ={movie} />)}
                     {loading && <div className="col-12 text-center"> <p>Cargando información...</p> </div> }
                     {!loading && !error && !moviesP.length&& <div className="col-12 text-center"> <h2>No hay información disponible.</h2></div> }
