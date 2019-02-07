@@ -30,11 +30,6 @@ class Home extends Component {
     if (genres) {
       url += "&with_genres=" + genres;
     }
-    if (ranking) {
-      console.log('lee')
-      url += "&vote_average.gte=" + ranking;
-      url += "&vote_average.lte=" + ++ranking;
-    }
     return fetch(url);
   }
   // Fetch Trending movies
@@ -43,11 +38,6 @@ class Home extends Component {
     if (genres) {
       url += "&with_genres=" + genres;
     }
-    if (ranking) {
-      console.log('lee')
-      url += "&vote_average.gte=" + ranking;
-      url += "&vote_average.lte=" + ++ranking;
-    }
     return fetch(url);
   }
 // All together
@@ -55,11 +45,11 @@ class Home extends Component {
     try {
       this.fetchPremiere(genres, ranking)
         .then(response => response.json())
-        .then(json => this.setState({ premiere: json.results.slice(0, 12) }));
+        .then(json => this.setState({ premiere: json.results.slice(0, 12)}))
       this.fetchTrending(genres, ranking)
         .then(response => response.json())
-        .then(json => this.setState({ trending: json.results.slice(0, 6) }));
-      this.setState({ranking, loading: false, error: false });
+        .then(json => this.setState({ trending: json.results.slice(0, 6)}))
+      this.setState({loading: false, error: false });
     } catch(e) {
       this.setState({ loading: false, error: true })
     }
